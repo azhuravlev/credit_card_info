@@ -8,7 +8,7 @@ module CreditCardInfo
   module Providers
     class Bincodes
       def self.fetch(code)
-        uri = URI("#{config.api_url}/bin/json/#{config.api_key}/#{code}")
+        uri = URI("#{config.api_url}/bin/json/#{config.api_key}/#{code}/")
 
         http = config.http_klass.new(uri.host, uri.port)
         http.use_ssl = true
