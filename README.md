@@ -40,7 +40,7 @@ CreditCardInfo::Config.configure do |config|
 
 
     # set cache provider class, Rails.cache by default when using in Rails application
-    config.cache.provider = Net::HTTP
+    config.cache.provider = Rails.cache
     # set cache keys lifeitime, default is 31 day
     config.cache.ttl = 2678400
     # set cache keys prefix, result key will be prefix:bin
