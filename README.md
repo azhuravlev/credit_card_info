@@ -4,10 +4,10 @@ The Issuer Identification Number (IIN), previously known as Bank Identification 
 These identify the institution that issued the card to the card holder and 
 provide useful information about the card that can help make your payments flow smarter.
 
-Uses two data providers:
-    * First bincodes.com API (require registration and api key).
-    * Second 'credit_card_bins' gem data.
-
+Uses 3 data providers:
+    * First binlist.net API.
+    * Second bincodes.com API (require registration and api key).
+    * Third 'credit_card_bins' gem data.
 
 ## Installation
 
@@ -30,6 +30,9 @@ Or install it yourself as:
 
 ```ruby
 CreditCardInfo::Config.configure do |config|
+    # Provider request order
+    config.data_providers = %w[Binlist Bincodes CreditCardBins]
+
     config.bincodes.api_key = "your_api_key"
     config.bincodes.api_url = "https://api.bincodes.com"
     
@@ -74,7 +77,9 @@ CreditCardInfo.fetch(bin)
 # }
 ```
 
-By default that call will be search firstly via bincodes.com, and if find nothing will search via `credit_card_bins` gem.
+By default that call will be search firstly via binlist.net, and if find nothing will search via bincodes.com,
+and if find nothing will search via `credit_card_bins` gem. You can change requests order, by `data_providers` section.
+
 
 ## Contributing
 

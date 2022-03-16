@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    credit_card_info (0.1.0)
+    credit_card_info (0.2.0)
       credit_card_bins (~> 0.0.1)
       dry-configurable (>= 0.13)
 

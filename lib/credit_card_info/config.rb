@@ -7,6 +7,8 @@ module CreditCardInfo
   class Config
     extend Dry::Configurable
 
+    setting :data_providers, default: %w[Binlist Bincodes CreditCardBins]
+
     setting :bincodes do
       setting :api_key, default: ""
       setting :api_url, default: "https://api.bincodes.com"

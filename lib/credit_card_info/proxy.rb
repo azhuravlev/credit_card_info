@@ -8,17 +8,23 @@ module CreditCardInfo
   module Proxy
     # @return [Hash, NilClass] bin description
     def self.fetch(code)
-      bincode_response = Providers::Bincodes.fetch(code)
-      return bincode_response.data if bincode_response.valid?
+      providers.each do |provider|
+        response = provider.fetch(code)
+        return response.data if response.valid?
 
-      bincode_response.log_error
-
-      card_bins_response = Providers::CreditCardBins.fetch(code)
-      return card_bins_response.data if card_bins_response.valid?
-
-      card_bins_response.log_error
+        response.log_error
+      end
 
       nil
+    end
+
+    def self.providers
+      @providers ||=
+        CreditCardInfo.config.data_providers.filter_map do |name|
+          Object.const_get "CreditCardInfo::Providers::#{name}"
+        rescue NameError
+          nil
+        end
     end
   end
 end
