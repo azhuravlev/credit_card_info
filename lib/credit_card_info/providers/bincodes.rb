@@ -33,8 +33,9 @@ module CreditCardInfo
         CreditCardInfo::Response.new(data: data).tap do |res|
           res.error = { code: data[:error], message: data[:message] } if data[:error]
         end
-      rescue JSONError => e
-        CreditCardInfo::Response.new(error: { code: e.class, message: "Invalid data from bincodes api: #{body}" })
+      rescue StandardError => e
+        CreditCardInfo::Response.new(error: { code:    e.class,
+                                              message: "Invalid data from bincodes api: #{response.body}" })
       end
 
       def self.config
