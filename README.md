@@ -38,7 +38,12 @@ CreditCardInfo::Config.configure do |config|
     # set timeout for api request (10 by default)
     config.bincodes.timeout = 10
 
-
+    config.binlist.api_url = "https://lookup.binlist.net/"
+    # class for make HttpRequests
+    config.bincodes.http_klass = Net::HTTP
+    # set binlist for api request (10 by default)
+    config.bincobinlistdes.timeout = 10
+    
     # set cache provider class, Rails.cache by default when using in Rails application
     config.cache.provider = Rails.cache
     # set cache keys lifeitime, default is 31 day

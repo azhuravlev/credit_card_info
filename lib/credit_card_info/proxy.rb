@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative "providers/bincodes"
+require_relative "providers/binlist"
 require_relative "providers/credit_card_bins"
 
 module CreditCardInfo

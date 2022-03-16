@@ -14,6 +14,12 @@ module CreditCardInfo
       setting :http_klass, default: Net::HTTP
     end
 
+    setting :binlist do
+      setting :api_url, default: "https://lookup.binlist.net/"
+      setting :timeout, default: 10
+      setting :http_klass, default: Net::HTTP
+    end
+
     setting :cache do
       setting :provider, default: defined?(Rails) ? Rails.cache : nil
       setting :ttl, default: 2678400 # 31 days
